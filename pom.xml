@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+<!--
+    Maven release plugin requires the project tag to be on a single line.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+      <groupId>org.apache</groupId>
+      <artifactId>apache</artifactId>
+      <version>23</version>
+    </parent>
+    <groupId>org.apache.openjpa</groupId>
+    <artifactId>openjpa-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>OpenJPA Parent POM</name>
+    <description>Apache OpenJPA implementation of JSR-338 JPA 2.1</description>
+    <version>3.1.3-SNAPSHOT</version>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>Apache Software Foundation</name>
+        <url>http://www.apache.org</url>
+    </organization>
+
+    <url>http://openjpa.apache.org</url>
+
+    <issueManagement>
+        <system>jira</system>
+        <url>https://issues.apache.org/jira/browse/OPENJPA</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://builds.apache.org/job/OpenJPA-trunk-deploy/</url>
+    </ciManagement>
+
+    <inceptionYear>2006</inceptionYear>
+
+    <mailingLists>
+        <mailingList>
+            <name>OpenJPA Developer List</name>
+            <subscribe>dev-subscribe@openjpa.apache.org</subscribe>
+            <unsubscribe>dev-unsubscribe@openjpa.apache.org</unsubscribe>
+            <post>dev@openjpa.apache.org</post>
+            <archive>https://lists.apache.org/list.html?dev@openjpa.apache.org</archive>
+        </mailingList>
+        <mailingList>
+            <name>OpenJPA Users List</name>
+            <subscribe>users-subscribe@openjpa.apache.org</subscribe>
+            <unsubscribe>users-unsubscribe@openjpa.apache.org</unsubscribe>
+            <post>users@openjpa.apache.org</post>
+            <archive>https://lists.apache.org/list.html?users@openjpa.apache.org</archive>
+        </mailingList>
+        <mailingList>
+            <name>OpenJPA Commits List</name>
+            <subscribe>commits-subscribe@openjpa.apache.org</subscribe>
+            <unsubscribe>commits-unsubscribe@openjpa.apache.org</unsubscribe>
+            <post>commits@openjpa.apache.org</post>
+            <archive>https://lists.apache.org/list.html?commits@openjpa.apache.org</archive>
+        </mailingList>
+    </mailingLists>
+
+    <distributionManagement>
+        <site>
+            <id>people.apache.org</id>
+            <url>${site.deploy.url}</url>
+        </site>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:https://gitbox.apache.org/repos/asf/openjpa.git</connection>
+        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/openjpa.git</developerConnection>
+        <url>https://gitbox.apache.org/repos/asf/openjpa.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <modules>
+        <module>openjpa-lib</module>
+        <!--<module>openjpa-kernel</module>-->
+        <module>openjpa-jdbc</module>
+        <!-- <module>openjpa-persistence</module> -->
+        <!-- <module>openjpa-persistence-jdbc</module> -->
+        <!-- <module>openjpa-persistence-locking</module> -->
+        <!-- <module>openjpa-xmlstore</module> -->
+        <!-- <module>openjpa-slice</module> -->
+        <!-- <module>openjpa-jest</module> -->
+        <!-- <module>openjpa-kubernetes</module> -->
+        <!-- <module>openjpa</module> -->
+        <!-- <module>openjpa-project</module> -->
+        <!-- <module>openjpa-examples</module> -->
+        <!-- <module>openjpa-integration</module> -->
+        <!-- <module>openjpa-all</module> -->
+        <!-- <module>openjpa-tools</module> -->
+        <!-- <module>openjpa-features</module> -->
+        <!-- <module>openjpa-junit5</module> -->
+        <!-- <module>tests</module> -->
+
+    </modules>
+
+
+    <properties>
+        <aggregate.report.dir>tests/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.targer>11</maven.compiler.targer>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.class.version>1.8</java.class.version>
+        <java.testclass.version>1.8</java.testclass.version>
+
+        <doclint>none</doclint>
+
+        <openjpa.version>${project.version}</openjpa.version>
+        <openjpa.Log>DefaultLevel=INFO</openjpa.Log>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <arquillian-junit.version>1.6.0.Final</arquillian-junit.version>
+        <junit.version>4.12</junit.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <derby.version>10.14.2.0</derby.version>
+        <hsqldb.version>2.4.1</hsqldb.version>
+        <mysql.connector.version>5.1.47</mysql.connector.version>
+        <mariadb.connector.version>2.2.0</mariadb.connector.version>
+        <postgresql.connector.version>42.2.5</postgresql.connector.version>
+        <mssql.connector.version>7.2.1</mssql.connector.version>
+
+        <!-- other common versions -->
+        <kubernetes-client.version>4.7.0</kubernetes-client.version>
+        <slf4j.version>1.7.23</slf4j.version>
+        <!-- Compile Java source/target class level -->
+        <compile.class.source>${java.class.version}</compile.class.source>
+        <compile.class.target>${java.class.version}</compile.class.target>
+        <compile.testclass.source>${java.testclass.version}</compile.testclass.source>
+        <compile.testclass.target>${java.testclass.version}</compile.testclass.target>
+
+
+        <maven.javadoc.version>3.0.1</maven.javadoc.version>
+        <javadoc.additionalparam />
+        <maven.surefire.version>3.0.0-M4</maven.surefire.version>
+        <jacoco-maven-plugin.version>0.8.0</jacoco-maven-plugin.version>
+
+        <xbean.version>4.17</xbean.version>
+        <bval.version>1.1.2</bval.version>
+        <jmock.version>2.9.0</jmock.version>
+
+        <servlet-api.version>4.0.0</servlet-api.version>
+    	      <sonar.projectKey>danielemariano:${project.groupId}:${project.artifactId}</sonar.projectKey>
+        <sonar.links.homepage>https://github.com/danielemariano/openJPA-test</sonar.links.homepage>
+        <sonar.links.ci>https://travis-ci.com/danielemariano/openJPA-test</sonar.links.ci>
+        <sonar.links.scm>https://github.com/danielemariano/openJPA-test</sonar.links.scm>
+        <sonar.links.issue>https://github.com/danielemariano/openJPA-test/issues</sonar.links.issue>
+
+    </properties>
+
+
+
+
+    <!-- default versions for dependencies that child modules may include -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>2.6.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.serp</groupId>
+                <artifactId>serp</artifactId>
+                <version>1.15.1</version>
+            </dependency>
+            <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version>${hamcrest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jmock</groupId>
+                <artifactId>jmock</artifactId>
+                <version>${jmock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>2.23.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito2</artifactId>
+                <version>${powermock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-minikdc</artifactId>
+                <version>${hadoop.minikdc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.arquillian.cube</groupId>
+                <artifactId>arquillian-cube-docker</artifactId>
+                <version>${arquillian-cube.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-standalone</artifactId>
+                <version>${arquillian-junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-jpa_2.2_spec</artifactId>
+                <version>1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-jms_1.1_spec</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-jta_1.1_spec</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-validation_1.1_spec</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.bval</groupId>
+                <artifactId>org.apache.bval.bundle</artifactId>
+                <version>${bval.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derby</artifactId>
+                <version>${derby.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbyclient</artifactId>
+                <version>${derby.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>2.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>2.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>${hsqldb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.connector.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta-regexp</groupId>
+                <artifactId>jakarta-regexp</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.11.1</version>
+            </dependency>
+            <dependency>
+              <groupId>io.fabric8</groupId>
+              <artifactId>kubernetes-client</artifactId>
+              <version>${kubernetes-client.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.fabric8</groupId>
+              <artifactId>kubernetes-server-mock</artifactId>
+              <version>${kubernetes-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ant</groupId>
+                <artifactId>ant</artifactId>
+                <version>1.9.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jmock</groupId>
+                <artifactId>jmock-junit4</artifactId>
+                <version>${jmock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>annotations</artifactId>
+                <version>3.0.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency><!-- Needed by junit -->
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.6.0.1398</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <!--<version>3.8.0</version>-->
+                    <configuration>
+                        <source>${compile.class.source}</source>
+                        <target>${compile.class.target}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.javadoc.version}</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.28.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>3.0.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>1.4</version>
+                    <configuration>
+                        <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                        <revisionOnScmFailure>offline</revisionOnScmFailure>
+                        <useLastCommittedRevision>true</useLastCommittedRevision>
+                        <timestampFormat>{0,date,long} at {0,time,short}</timestampFormat>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>create</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.1.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.3</version>
+                    <configuration>
+                        <useReleaseProfile>false</useReleaseProfile>
+                        <tagNameFormat>@{project.version}</tagNameFormat>
+
+                        <!--
+                            The openbooks example contains a build.xml which tries to add ~/.m2/repository/../openjpa-all-nnn.jar
+                            to the classpath. But since the maven-release-plugin by default only prepares with 'clean verify'
+                            the jar doesn't end in the local m2 repo. It will only be in the opanjpa-all/target folder.
+                            For now I forced an 'install', but we should ultimately just fix the openbooks example.
+                        -->
+                        <preparationGoals>clean install</preparationGoals>
+
+                        <goals>deploy</goals>
+                        <arguments>-Papache-release,docbook-profile,test-derby,bval</arguments>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+
+                        <!-- special config for git -->
+                        <pushChanges>false</pushChanges>
+                        <localCheckout>true</localCheckout>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.ant</groupId>
+                            <artifactId>ant-jsch</artifactId>
+                            <version>1.10.5</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>ant-contrib</groupId>
+                            <artifactId>ant-contrib</artifactId>
+                            <version>1.0b3</version>
+                            <!-- tries to pull in older ant-1.5.jar -->
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>ant</groupId>
+                                    <artifactId>ant</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>taglist-maven-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <executions>
+                        <execution>
+                            <id>default-jar</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                            <configuration>
+                                <archive>
+                                    <manifest>
+                                       <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    </manifest>
+                                    <manifestEntries>
+                                        <Implementation-Build>${buildNumber}</Implementation-Build>
+                                        <Implementation-Date>${timestamp}</Implementation-Date>
+                                        <Automatic-Module-Name>${automatic-module-name}</Automatic-Module-Name>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>attach-tests</id>
+                            <goals>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>4.0.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <instructions>
+                            <Implementation-Title>${project.name}</Implementation-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Bundle-DocURL>${project.url}</Bundle-DocURL>
+                        </instructions>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>4.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.openjpa</groupId>
+                    <artifactId>openjpa-maven-plugin</artifactId>
+                    <version>${project.version}</version>
+                </plugin>
+
+                <!-- Newer versions of plugin will cause PDF build failures -->
+                <plugin>
+                    <groupId>com.agilejava.docbkx</groupId>
+                    <artifactId>docbkx-maven-plugin</artifactId>
+                    <version>2.0.17</version>
+                </plugin>
+
+                <!-- Ignore/Execute plugin execution -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+
+
+                                <!--enforcer plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-enforcer-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>enforce</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+
+                                <!--javadoc plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-javadoc-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>javadoc</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+
+                                <!--maven plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>buildnumber-maven-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>create</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+
+                                <!--javacc plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>javacc-maven-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>jjtree-javacc</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute />
+                                    </action>
+                                </pluginExecution>
+
+                                <!--maven-antrun plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-antrun-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>run</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+
+                                <!--enhance plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.openjpa</groupId>
+                                        <artifactId>openjpa-maven-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>enhance</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+
+                                <!--test-enhance plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.openjpa</groupId>
+                                        <artifactId>openjpa-maven-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>test-enhance</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+
+                                <!--unpack plugin -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>unpack</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <!--<version>3.0.0-M4</version>-->
+                <configuration>
+                    <forkCount>${forkCount.variable}</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <forkedProcessTimeoutInSeconds>1800</forkedProcessTimeoutInSeconds>
+                    <rerunFailingTestsCount>0</rerunFailingTestsCount>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>test-source-compile</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <source>${compile.testclass.source}</source>
+                            <target>${compile.testclass.target}</target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>[3.3.9,)</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>[1.8,)</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+    <profile>
+        <id>coverage</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
+    <profile>
+      <!-- profile used by jenkins CI -->
+      <id>code-coverage</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.eluder.coveralls</groupId>
+            <artifactId>coveralls-maven-plugin</artifactId>
+            <version>${coveralls-maven-plugin.version}</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire-plugin.version}</version>
+            <configuration>
+              <!-- @{argLine} is a variable injected by JaCoCo-->
+              <argLine>@{argLine} -Xmx2G -Djava.net.preferIPv4Stack=true</argLine>
+              <redirectTestOutputToFile>${redirectTestOutputToFile}</redirectTestOutputToFile>
+              <forkCount>${forkCount.variable}</forkCount>
+              <reuseForks>false</reuseForks>
+              <forkedProcessTimeoutInSeconds>1800</forkedProcessTimeoutInSeconds>
+              <!-- we want build to complete even in case of failures -->
+              <testFailureIgnore>true</testFailureIgnore>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    </profiles>
+
+</project>
