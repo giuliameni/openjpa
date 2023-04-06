@@ -44,3 +44,14 @@ public class ClassUtilGetClassNameTest {
 
     
 }
+
+/*Il secondo test (ClassUtilGetClassNameTest), invece, testa 
+ * il metodo getClassName(Class<?> clazz) della stessa classe 
+ * ClassUtil, che ha il compito di estrarre il nome della classe 
+ * a partire dalla classe stessa (clazz), restituendo solo il nome 
+ * della classe senza il package. Il test utilizza l'annotazione 
+ * @RunWith(Parameterized.class) per eseguire lo stesso test 
+ * su una serie di input diversi, passati come parametri nella
+ *  collezione restituita dal metodo testData().
+ */
+

@@ -30,7 +30,7 @@ public class ClassUtilGetPackageFromClassTest {
     public static Collection<Object[]> testData() {
         return Arrays.asList(new Object[][]{
                 {String.class, "java.lang"},
-                {MyClassUtilTest.class, "org.apache.openjpa.lib.util"},
+                {ClassUtilGetClassNameNewTest.class, "org.apache.openjpa.lib.util"},
                 {int.class, ""}
         });
     }
@@ -40,3 +40,9 @@ public class ClassUtilGetPackageFromClassTest {
         assertEquals(expectedOutput, ClassUtil.getPackageName(input));
     }
 }
+
+/*Questo test verifica il comportamento del metodo ClassUtil.getPackageName() della classe org.apache.openjpa.lib.util.ClassUtil. Il test utilizza l'annotazione @RunWith(Parameterized.class) per eseguire lo stesso test su diversi input passati come parametri nella collezione restituita dal metodo testData().
+
+Ogni elemento della collezione è un array di due oggetti: una classe Class<?> e una stringa contenente il nome del package atteso. Il test verifica che, per ciascun input, il metodo getPackageName() restituisca il nome atteso del package a cui appartiene la classe.
+
+In altre parole, il test verifica che il metodo ClassUtil.getPackageName() sia in grado di estrarre il nome del package a partire dalla classe passata come input.*/

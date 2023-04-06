@@ -29,9 +29,9 @@ public class ClassUtilInvalidClassNameTest {
     @Parameters
     public static Collection<Object[]> testData() {
         return Arrays.asList(new Object[][]{
-                {"com.example.DoesNotExist", MyClassUtilTest.class.getClassLoader()},
+                {"com.example.DoesNotExist", ClassUtilGetClassNameNewTest.class.getClassLoader()},
                 {"nonexistent.package.NonexistentClass", null},
-                {"", MyClassUtilTest.class.getClassLoader()}
+                {"", ClassUtilGetClassNameNewTest.class.getClassLoader()}
         });
     }
 
@@ -45,3 +45,5 @@ public class ClassUtilInvalidClassNameTest {
         }
     }
 }
+
+/*Questo test verifica il comportamento del metodo toClass della classe ClassUtil quando viene passato un nome di classe non valido come parametro. Il test utilizza l'annotazione @RunWith(Parameterized.class) per eseguire il test con più set di dati, specificati nel metodo testData(). Per ogni set di dati, il test crea un'istanza di ClassUtilInvalidClassNameTest con il nome della classe e il ClassLoader specificati, e poi chiama il metodo toClass passando tali valori. Infine, il test verifica se viene sollevata un'eccezione IllegalArgumentException come previsto e se il messaggio di errore contiene il nome della classe non valida.*/

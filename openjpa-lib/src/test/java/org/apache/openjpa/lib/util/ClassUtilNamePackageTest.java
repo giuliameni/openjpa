@@ -43,3 +43,10 @@ public class ClassUtilNamePackageTest {
         assertEquals(expectedOutput, ClassUtil.getPackageName(input));
     }
 }
+
+
+/*Questo test definisce una serie di casi di test per il metodo ClassUtil.getPackageName(String) che verifica che il metodo restituisca correttamente il nome del package di una classe data in input.
+
+Il test definisce un array bidimensionale di oggetti, dove ogni riga rappresenta un caso di test specifico e ha due elementi: il primo è una stringa che rappresenta il nome della classe di input, il secondo è una stringa che rappresenta il nome del package atteso per la classe di input.
+
+Il metodo testGetPackageName() esegue il test effettivo, chiamando il metodo ClassUtil.getPackageName() con l'input specificato e verificando che l'output sia uguale all'output atteso. Il test viene eseguito per ogni caso di test definito nell'array di dati.*/

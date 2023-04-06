@@ -36,13 +36,23 @@ public class ClassUtilPrimitiveArrayTest {
                 {"byte[]", byte[].class},
                 {"double[]", double[].class},
                 {"float[]", float[].class},
-                {"char[]", char[].class}
+                {"char[]", char[].class},
+                {"int", int.class},
+                {"boolean", boolean.class},
+                {"long", long.class},
+                {"short", short.class},
+                {"byte", byte.class},
+                {"double", double.class},
+                {"float", float.class},
+                {"char", char.class}
         });
     }
 
     @Test
     public void testToClassWithPrimitiveArrayType() {
-        Class<?> clazz = ClassUtil.toClass(className, false, MyClassUtilTest.class.getClassLoader());
+        Class<?> clazz = ClassUtil.toClass(className, false, ClassUtilGetClassNameNewTest.class.getClassLoader());
         assertEquals(expectedClass, clazz);
     }
 }
+
+/*Il test ClassUtilPrimitiveArrayTest verifica la corretta conversione del nome di un array di tipo primitivo in una classe utilizzando il metodo ClassUtil.toClass(). Il test definisce una serie di casi di test che includono diversi tipi di array di tipo primitivo e i corrispondenti tipi di classe. Ogni caso di test chiama il metodo toClass() e verifica che il risultato sia uguale al valore atteso. Il test è eseguito in modalità parametrica, utilizzando l'annotazione @RunWith(Parameterized.class) e i parametri di input sono definiti nel metodo testData().*/
