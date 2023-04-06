@@ -34,7 +34,8 @@ public class QualifieDBIdentifierEqualTest {
             { path3, path2, true },
             { path1, path4, false },
             { path1, null, false },
-            { path1, s1, false }
+            { path1, s1, false },
+            
         };
     }
     
@@ -53,4 +54,21 @@ public class QualifieDBIdentifierEqualTest {
         boolean actualEquality = identifier1.equals(identifier2);
         assertEquals(expectedEquality, actualEquality);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testEqualsWithInvalidType() {
+        Object obj = new Object();
+        identifier1.equals(obj);
+    }
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
 }

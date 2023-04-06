@@ -28,7 +28,11 @@ public class QualifiedDBIIdentifierDelimitedTest {
                 {DBIdentifier.newTable("my_table"), false},
                 {DBIdentifier.newTable("my_schema.my_table"), false},
                 {DBIdentifier.newTable("\"my_schema\".\"my_table\""), true},
-                {DBIdentifier.newTable("[my_schema].[my_table]"), true}
+                {DBIdentifier.newTable("[my_schema].[my_table]"), true},
+                {DBIdentifier.newColumn("[identifier]"), true},
+                {DBIdentifier.newColumn("identifier"), false},
+                {DBIdentifier.newColumn("[[identifier]]"), true},
+                {DBIdentifier.newColumn(""), false}
         });
     }
 
