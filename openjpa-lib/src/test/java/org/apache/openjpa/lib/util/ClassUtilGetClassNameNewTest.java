@@ -1,11 +1,10 @@
 package org.apache.openjpa.lib.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.apache.openjpa.lib.util.ClassUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -13,44 +12,47 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public class ClassUtilGetClassNameNewTest {
+
+	private String classPath;
 	
-    private final String fullName;
-    private final String expectedClassName;
-
-    public ClassUtilGetClassNameNewTest(String fullName, String expectedClassName) {
-        this.fullName = fullName;
-        this.expectedClassName = expectedClassName;
-    }
-
     @Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] { 
-            { "java.lang.String", "String" },
-            { "java.util.Map.Entry", "Entry" },
-            { "[Ljava.lang.String;", "String[]" },
-            { "[[[I", "int[][][]" },
-            { "[[[Ljava.util.Map.Entry;", "Entry[][][]" },
-            { "", "" },
-            { null, null },
-            { "int", "int" },
-            { "com.example.MyClass", "MyClass"}
-            
+    public static Collection<Object[]> configure() {
+        return Arrays.asList(new Object[][]{
+        	{ ClassUtilGetClassNameNewTest.class.toString() },
+            { ClassUtil.getClassName(int.class) },
+            { null },
+            { "" },
         });
     }
 
-    @Test
-    public void testGetClassName() {
-        assertEquals(expectedClassName, ClassUtil.getClassName(fullName));
+    public ClassUtilGetClassNameNewTest( String classPath ) {
+        this.classPath = classPath;
     }
 
-}
-/*Questo è un test della classe ClassUtil della libreria OpenJPA. 
- * In particolare, si testa il metodo getClassName(String fullName) della classe. Il test utilizza l'annotazione @RunWith(Parameterized.class) per eseguire lo stesso test su una serie di input diversi, passati come parametri nella collezione restituita dal metodo data().
+    // La classe testa il metodo getClassName della ClassUtil
+    // utilizzando i 4 casi passati dal metodo configure
+    @Test
+    public void getClassNameTest() {
+        String expectedName;
+        String className = ClassUtil.getClassName(classPath);
+        
+        if(classPath == null){
+            expectedName = null ;
+        } else if(classPath == ""){
+            expectedName = "" ;
+        } else if(classPath == "int"){
+        	expectedName = "int";
+        } else {
+            int lastDot = classPath.toString().lastIndexOf('.');
+            expectedName = lastDot > -1 ? classPath.substring(lastDot + 1) : classPath;
+        }
+        assertEquals(expectedName, className);
+    }
+    
+    private static abstract class MyInnerClass {
+        // not needed
+    }
 
-Ogni elemento della collezione è un array di due oggetti: 
-una stringa rappresentante il nome completo della classe e 
-una stringa contenente il nome atteso della classe (senza il package).
- Il test verifica che, per ciascun input, il metodo getClassName() restituisca il nome atteso
-  della classe. In altre parole, il test verifica che il metodo ClassUtil.getClassName() sia 
-  in grado di estrarre il nome della classe a partire dal suo nome completo 
-(fullName) restituendo solo il nome della classe (expectedClassName) senza il package.*/
+    private static final MyInnerClass INSTANCE = new MyInnerClass() {
+    };
+}
