@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=giulia97-w_openjpa 
-      - name: Save Jacoco and Pit Reports
+      - name: Save Jacoco and Pit Reports for openjpa-jdbc
         uses: actions/upload-artifact@v2
         with:
           name: Jacoco and Pit Reports for openjpa-jdbc
@@ -46,7 +46,7 @@ jobs:
       - name: Save Jacoco and Pit Reports for openjpa-lib
         uses: actions/upload-artifact@v2
         with:
-          name: Jacoco and Pit Reports for openjpa-jdbc
+          name: Jacoco and Pit Reports for openjpa-lib
           path: |
             openjpa-lib/target/site/jacoco
             openjpa-lib/target/pit-reports
