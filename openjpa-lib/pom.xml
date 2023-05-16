@@ -88,6 +88,69 @@
 
     <build>
         <plugins>
+         <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.4.3</version>
+            <executions>
+                <execution>
+                    <id>pit-report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>mutationCoverage</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <timeoutConstant>2000</timeoutConstant>
+                <timeoutFactor>1</timeoutFactor>
+                <targetClasses>
+                    
+                    <param>org.apache.openjpa.lib.util.ClassUtil</param>
+
+
+                </targetClasses>
+                <targetTests>
+                    
+                    
+
+                    
+                    <param>org.apache.openjpa.lib.util.ClassUtilGetClassNameTest</param>
+                    <param>org.apache.openjpa.lib.util.ClassUtilGetClassNameStringTest</param>
+                    <param>org.apache.openjpa.lib.util.ClassUtilGetPackageTest</param>
+
+
+
+                    
+                </targetTests>
+                <avoidCallsTo>
+                    <avoidCallsTo>java.util.logging</avoidCallsTo>
+                    <avoidCallsTo>org.apache.log4j</avoidCallsTo>
+                    <avoidCallsTo>org.slf4j</avoidCallsTo>
+                    <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+                </avoidCallsTo>
+            </configuration>
+        </plugin>
+        <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>0.8.7</version>
+          
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>prepare-agent</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>report</id>
+                  <phase>test</phase>
+                  <goals>
+                    <goal>report</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -103,45 +166,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>pit</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.pitest</groupId>
-                        <artifactId>pitest-maven</artifactId>
-                        <version>1.5.1</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.pitest</groupId>
-                                <artifactId>pitest-junit5-plugin</artifactId>
-                                <version>0.12</version>
-                            </dependency>
-                        </dependencies>
-                        <configuration>
-                            <maxMutationsPerClass>50</maxMutationsPerClass>
-                            <targetClasses>
-                                <param>org.apache.openjpa.lib.util.ClassUtil</param>
-                            </targetClasses>
-                            <targetTests>
-                                <param>
-                                    org.apache.openjpa.lib.util.MyClassUtilTest
-                                    org.apache.openjpa.lib.util.MyClassUtilSecondTest
-                                </param>
-
-                            </targetTests>
-
-                            <avoidCallsTo>
-                                <avoidCallsTo>java.util.logging</avoidCallsTo>
-                                <avoidCallsTo>org.apache.log4j</avoidCallsTo>
-                                <avoidCallsTo>org.slf4j</avoidCallsTo>
-                                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
-                            </avoidCallsTo>
-
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+        
     </profiles>
 </project>
