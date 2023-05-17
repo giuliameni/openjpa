@@ -37,9 +37,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=giulia97-w_openjpa 
       - name: Change Directory
-        run: | 
-          cd openjpa-jdbc
-          mvn test
+        run: cd openjpa-jdbc
       - name: Save Jacoco and Pit Reports for openjpa-jdbc
         uses: actions/upload-artifact@v3
         with:
