@@ -36,9 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          cd openjpa-jdbc
-          mvn test 
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=giulia97-w_openjpa -Pcoverage
 
       - name: Save Jacoco and Pit Reports for openjpa-jdbc
         uses: actions/upload-artifact@v3
