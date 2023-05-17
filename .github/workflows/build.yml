@@ -30,14 +30,16 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+          
+      - name: Change directory
+        run: cd openjpa-jdbc
       
-      - name: Build and analyze openjpa-lib
+      - name: Build and analyze openjpa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=giulia97-w_openjpa 
-      - name: Change Directory
-        run: cd openjpa-jdbc
+
       - name: Save Jacoco and Pit Reports for openjpa-jdbc
         uses: actions/upload-artifact@v3
         with:
