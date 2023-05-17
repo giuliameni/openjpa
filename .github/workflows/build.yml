@@ -30,25 +30,14 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build and analyze openjpa-jdbc
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-            cd openjpa-jdbc 
-            run: |
-              cd openjpa-jdbc 
-              mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=giulia97-w_openjpa 
-            
+      
+      - name : Change Directory
+        run : cd openjpa-jdbc
       - name: Build and analyze openjpa-lib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          run: |
-              cd openjpa-lib 
-              mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=giulia97-w_openjpa 
-      - name: creating Jacoco Report
-        run: mvn jacoco:report
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=giulia97-w_openjpa 
       
       - name: Save Jacoco and Pit Reports for openjpa-jdbc
         uses: actions/upload-artifact@v3
@@ -58,10 +47,5 @@ jobs:
             openjpa-jdbc/target/site/jacoco
             openjpa-jdbc/target/pit-reports
             
-      - name: Save Jacoco and Pit Reports for openjpa-lib
-        uses: actions/upload-artifact@v3
-        with:
-          name: Jacoco and Pit Reports for openjpa-lib
-          path: |
-            openjpa-lib/target/site/jacoco
-            openjpa-lib/target/pit-reports
+      
+ 
